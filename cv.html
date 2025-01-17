@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos de su cuenta</title>
+  <style>
+ body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.cv-container {
+  width: 80%;
+  max-width: 600px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.cv-container img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #6c63ff;
+}
+
+.cv-container h1 {
+  color: #6c63ff;
+  margin-bottom: 10px;
+}
+
+.cv-container h2 {
+  color: #333;
+  margin: 10px 0;
+}
+
+.cv-container p {
+  color: #555;
+  margin: 5px 0;
+}
+
+#back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#back-button:hover {
+  background-color: #514cc1;
+}
+
+  </style>
+</head>
+<body>
+  <div class="cv-container">
+    <img id="cv-image" src="img/user.png" alt="Foto de perfil">
+    <h1>  Datos del usuario</h1>
+    <div id="cv-content"></div>
+    <!-- Botón para regresar -->
+    <button id="back-button">Volver al inicio</button>
+  </div>
+
+  <script>
+    // Obtener los datos del localStorage
+    const cvData = JSON.parse(localStorage.getItem("cvData"));
+
+    // Agregar contenido del CV
+    const cvContent = `
+      <h2>${cvData.nombre}</h2>
+      <p><strong>Dirección:</strong> ${cvData.direccion}</p>
+      <p><strong>Email:</strong> ${cvData.email}</p>
+      <p><strong>Teléfono:</strong> ${cvData.telefono}</p>
+      <p><strong>Ciudad:</strong> ${cvData.ciudad}</p>
+      <p><strong>Género:</strong> ${cvData.genero}</p>
+    `;
+    document.getElementById("cv-content").innerHTML = cvContent;
+
+    // Opcional: Cambiar la imagen si se pasa como dato en localStorage
+    const profileImage = cvData.imagen || "img/user.png";
+    document.getElementById("cv-image").src = profileImage;
+
+    // Acción del botón "Volver al inicio"
+    document.getElementById("back-button").addEventListener("click", () => {
+      window.location.href = "repuesto.html";
+    });
+  </script>
+</body>
+</html>

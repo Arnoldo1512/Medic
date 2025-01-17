@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="formulario.css">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <div class="title">Formulario</div>
+    <form id="formulario" action="https://formsubmit.co/arnoldcabreragutierrez23@gmail.com" method="POST" >
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Nombre completo</span>
+          <input type="text" id="nombre" placeholder="Ingrese su nombre" required>
+        </div>
+        <div class="input-box">
+          <span class="details">Dirección</span>
+          <input type="text" id="direccion" placeholder="Ingrese su dirección" required>
+        </div>
+        <div class="input-box">
+          <span class="details">Gmail</span>
+          <input type="email" id="email" placeholder="Ingrese su Gmail" required>
+        </div>
+        <div class="input-box">
+          <span class="details">Número telefónico</span>
+          <input type="text" id="telefono" placeholder="Ingrese su teléfono" required>
+        </div>
+        <div class="input-box">
+          <span class="details">Ciudad</span>
+          <input type="text" id="ciudad" placeholder="Ingrese su ciudad" required>
+        </div>
+      </div>
+      <div class="gender-details">
+        <span class="gender-title">Género</span>
+        <div class="category">
+          <input type="radio" name="gender" id="dot-1" value="Masculino">
+          <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Masculino</span>
+          </label>
+          <input type="radio" name="gender" id="dot-2" value="Femenino">
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Femenino</span>
+          </label>
+          <input type="radio" name="gender" id="dot-3" value="Prefiero no decirlo">
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefiero no decirlo</span>
+          </label>
+        </div>
+      </div>
+      <div class="button">
+        <input type="button" value="Enviar" id="btnEnviar">
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("btnEnviar").addEventListener("click", function() {
+      // Capturar los datos del formulario
+      const nombre = document.getElementById("nombre").value;
+      const direccion = document.getElementById("direccion").value;
+      const email = document.getElementById("email").value;
+      const telefono = document.getElementById("telefono").value;
+      const ciudad = document.getElementById("ciudad").value;
+      const genero = document.querySelector('input[name="gender"]:checked')?.value || "No especificado";
+
+      // Guardar los datos en localStorage para pasarlos a la siguiente página
+      localStorage.setItem("cvData", JSON.stringify({ nombre, direccion, email, telefono, ciudad, genero }));
+
+      // Redirigir a la página de visualización
+      window.location.href = "cv.html";
+    });
+  </script>
+</body>
+</html>
